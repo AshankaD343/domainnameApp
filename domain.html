@@ -1,0 +1,58 @@
+<html>
+<head>
+<title></title>
+<style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"></style>
+</head>
+<body>
+<h1>welcome to domain app</h1>
+<form  class="mb-3">
+<div class="row mb-3">
+<label>domain:</label><br>
+<input type="text" id="have"> <br>
+
+<button type ="submit" id ="submit">convert</button>
+</div>
+</form>
+<p>domain :<span id="old"></span></p>
+
+<p>data1:<span id="old1"></span></p>
+<P>data2:<span id="ol1"></span></P>
+<p>updated_date:<span id="A1"></span></p>
+<p>creation_date:<span id="A2"></span></p>
+<p>expiration_date:<span id="A3"></span></p>
+<p>name_servers:<span id="A4"></span></p>
+
+<script>
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '6731dc6497mshbc9a2200c1776c1p18a905jsn6fafbc934f50',
+		'X-RapidAPI-Host': 'whois-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+const app = (have) => {
+	fetch('https://whois-by-api-ninjas.p.rapidapi.com/v1/whois?domain='+have,options)
+    .then(response => response.json())
+	.then(data => {console.log(data)
+	
+		old.innerHTML = data.domain_name
+		old1.innerHTML = data.registrar
+		ol1.innerHTML = data.whois_server
+		A1.innerHTML = data.updated_date
+		A2.innerHTML = data.creation_date
+		A3.innerHTML = data.expiration_date
+		A4.innerHTML = data.name_servers
+		
+		})}
+		
+		submit.addEventListener("click", (e) =>{
+		e.preventDefault()
+		app(have.value)
+		})
+		app("")
+	</script>
+		</body>
+		</html>
